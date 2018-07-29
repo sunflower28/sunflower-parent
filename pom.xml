@@ -35,6 +35,7 @@
 		<fastjson.version>1.2.46</fastjson.version>
 		<shiro.version>1.4.0</shiro.version>
 		<io.springfox.version>2.8.0</io.springfox.version>
+		<wxpay.version>0.0.3</wxpay.version>
 
 		<!-- yml文件属性配置 -->
 		<eureka.security.user>admin</eureka.security.user>
@@ -411,6 +412,13 @@
 				<artifactId>jstl</artifactId>
 				<version>${jstl.version}</version>
 			</dependency>
+			<!-- https://mvnrepository.com/artifact/com.github.wxpay/wxpay-sdk -->
+			<dependency>
+				<groupId>com.github.wxpay</groupId>
+				<artifactId>wxpay-sdk</artifactId>
+				<version>${wxpay.version}</version>
+			</dependency>
+
 		</dependencies>
 	</dependencyManagement>
 	<build>
