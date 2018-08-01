@@ -419,6 +419,11 @@
 				<artifactId>jstl</artifactId>
 				<version>${jstl.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>servlet-api</artifactId>
+				<version>RELEASE</version>
+			</dependency>
 			<!-- https://mvnrepository.com/artifact/com.github.wxpay/wxpay-sdk -->
 			<dependency>
 				<groupId>com.github.wxpay</groupId>
