@@ -68,18 +68,6 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-			<!-- 测试 -->
-			<dependency>  
-	           <groupId>org.springframework.boot</groupId>  
-	           <artifactId>spring-boot-starter-test</artifactId>  
-	           <version>${spring-boot.version}</version>
-	           <scope>test</scope>  
-        	</dependency>
-			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-starter-security</artifactId>
-				<version>${spring-cloud.version}</version>
-			</dependency>
 			<!--依赖管理，用于管理spring-cloud的依赖，其中Edgware.SR1是版本号 -->
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
@@ -88,70 +76,79 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-			<!-- eureka 云端负载均衡，一个基于 REST 的服务，用于定位服务，以实现云端的负载均衡和中间层服务器的故障转移。 -->
 			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-starter-eureka</artifactId>
-				<version>${spring-cloud.version}</version>
+				<groupId>de.codecentric</groupId>
+				<artifactId>spring-boot-admin-dependencies</artifactId>
+				<version>${spring-boot-admin.version}</version>
 			</dependency>
-			<dependency>
+			<!-- 测试 -->
+			<dependency>  
+	           <groupId>org.springframework.boot</groupId>  
+	           <artifactId>spring-boot-starter-test</artifactId>  
+	           <version>${spring-boot.version}</version>
+	           <scope>test</scope>  
+        	</dependency>
+			<!--<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-starter-security</artifactId>
 				<version>${spring-cloud.version}</version>
-			</dependency>
-			<dependency>
+			</dependency>-->
+			<!-- eureka 云端负载均衡，一个基于 REST 的服务，用于定位服务，以实现云端的负载均衡和中间层服务器的故障转移。 -->
+			<!--<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-eureka</artifactId>
+				<version>${spring-cloud.version}</version>
+			</dependency>-->
+			<!--<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-starter-oauth2</artifactId>
 				<version>${spring-cloud.version}</version>
-			</dependency>
+			</dependency>-->
 			<!-- zuul 边缘服务工具，是提供动态路由，监控，弹性，安全等的边缘服务 -->
-			<dependency>
+			<!--<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-starter-zuul</artifactId>
 				<version>${spring-cloud.version}</version>
-			</dependency>
-
+			</dependency>-->
 			<!-- feign -->
-			<dependency>
+			<!--<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-starter-feign</artifactId>
 				<version>${spring-cloud.version}</version>
-			</dependency>
-
+			</dependency>-->
 			<!-- hystrix 容错管理工具，旨在通过控制服务和第三方库的节点,从而对延迟和故障提供更强大的容错能力。 -->
-			<dependency>
+			<!--<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-starter-hystrix</artifactId>
 				<version>${spring-cloud.version}</version>
-			</dependency>
-			
-			<!-- ribbon --> 
-			<dependency>
+			</dependency>-->
+			<!-- ribbon -->
+			<!--<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-starter-ribbon</artifactId>
 				<version>${spring-cloud.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>de.codecentric</groupId>
-				<artifactId>spring-boot-admin-server</artifactId>
-				<version>${spring-boot-admin.version}</version>
-			</dependency>
-			<dependency>
+			</dependency>-->
+			<!--<dependency>
 				<groupId>de.codecentric</groupId>
 				<artifactId>spring-boot-admin-server-ui</artifactId>
 				<version>${spring-boot-admin.version}</version>
-			</dependency>
-			<dependency>
+			</dependency>-->
+			<!--<dependency>
 				<groupId>de.codecentric</groupId>
 				<artifactId>spring-boot-admin-starter-client</artifactId>
 				<version>${spring-boot-admin.version}</version>
-			</dependency>
+			</dependency>-->
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-starter-logging</artifactId>
 				<version>${spring-boot.version}</version>
 				<scope>runtime</scope>
+				<exclusions>
+					<exclusion>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+					</exclusion>
+				</exclusions>
 			</dependency>
 			<dependency>
 				<groupId>org.slf4j</groupId>
