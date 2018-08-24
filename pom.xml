@@ -48,7 +48,7 @@
 
 
 
-		<logging.config>sunflower-framework/sunflower-framework-core/src/main/resources/logback-spring.xml</logging.config>
+		<logging.config>https://gitee.com/sunflower29/logback/blob/master/logback-spring.xml</logging.config>
 
 	</properties>
 
