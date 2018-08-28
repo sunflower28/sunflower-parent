@@ -112,11 +112,11 @@
 				<version>${spring-cloud.version}</version>
 			</dependency>-->
 			<!-- feign -->
-			<!--<dependency>
+			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-starter-feign</artifactId>
 				<version>${spring-cloud.version}</version>
-			</dependency>-->
+			</dependency>
 			<!-- hystrix 容错管理工具，旨在通过控制服务和第三方库的节点,从而对延迟和故障提供更强大的容错能力。 -->
 			<!--<dependency>
 				<groupId>org.springframework.cloud</groupId>
@@ -124,11 +124,11 @@
 				<version>${spring-cloud.version}</version>
 			</dependency>-->
 			<!-- ribbon -->
-			<!--<dependency>
+			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-starter-ribbon</artifactId>
 				<version>${spring-cloud.version}</version>
-			</dependency>-->
+			</dependency>
 			<!--<dependency>
 				<groupId>de.codecentric</groupId>
 				<artifactId>spring-boot-admin-server-ui</artifactId>
