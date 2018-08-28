@@ -48,7 +48,7 @@
 
 
 
-		<logging.config>https://gitee.com/sunflower29/logback/blob/master/logback-spring.xml</logging.config>
+		<logging.config>http://118.25.8.54:8082/coding/logback-spring.xml</logging.config>
 
 	</properties>
 
@@ -95,11 +95,11 @@
 				<version>${spring-cloud.version}</version>
 			</dependency>-->
 			<!-- eureka 云端负载均衡，一个基于 REST 的服务，用于定位服务，以实现云端的负载均衡和中间层服务器的故障转移。 -->
-			<!--<dependency>
+			<dependency>
 				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-starter-eureka</artifactId>
-				<version>${spring-cloud.version}</version>
-			</dependency>-->
+				<artifactId>spring-cloud-starter-eureka-server</artifactId>
+				<version>1.4.5.RELEASE</version>
+			</dependency>
 			<!--<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-starter-oauth2</artifactId>
@@ -115,7 +115,7 @@
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-starter-feign</artifactId>
-				<version>${spring-cloud.version}</version>
+				<version>1.4.5.RELEASE</version>
 			</dependency>
 			<!-- hystrix 容错管理工具，旨在通过控制服务和第三方库的节点,从而对延迟和故障提供更强大的容错能力。 -->
 			<!--<dependency>
@@ -127,7 +127,7 @@
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-starter-ribbon</artifactId>
-				<version>${spring-cloud.version}</version>
+				<version>1.4.5.RELEASE</version>
 			</dependency>
 			<!--<dependency>
 				<groupId>de.codecentric</groupId>
