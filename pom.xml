@@ -7,10 +7,6 @@
 	<packaging>pom</packaging>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<jdk.version>1.8</jdk.version>
-
-		<jstl.version>1.2</jstl.version>
-		<tomcat-embed-jasper.version>8.5.16</tomcat-embed-jasper.version>
 
 		<maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
 		<maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
@@ -18,26 +14,34 @@
 		<maven-surefire-plugin.version>2.20.1</maven-surefire-plugin.version>
 		<maven-clean-plugin.version>3.0.0</maven-clean-plugin.version>
 		<maven-source-plugin.version>3.0.1</maven-source-plugin.version>
-		<spring-boot.version>2.0.3.RELEASE</spring-boot.version>
-		<spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
-		<spring-boot-admin.version>1.5.7</spring-boot-admin.version>
-		<mybatis-spring.version>1.3.1</mybatis-spring.version>
-		<mybatis.version>3.4.5</mybatis.version>
-		<mybatis-plus.version>2.1.9</mybatis-plus.version>
-		<mybatisplus-spring-boot-starter.version>1.0.5</mybatisplus-spring-boot-starter.version>
-		<mysql.version>5.1.45</mysql.version>
-		<druid.version>1.1.7</druid.version>
-		<commons-lang3.version>3.7</commons-lang3.version>
-		<httpclient.version>4.3.2</httpclient.version>
-		<jjwt.version>0.9.0</jjwt.version>
-		<jsqlparser.version>1.1</jsqlparser.version>
+		<jdk.version>1.8</jdk.version>
+		<docker.image.prefix>registry-vpc.cn-shanghai.aliyuncs.com</docker.image.prefix>
+		<spring-boot.version>2.0.4.RELEASE</spring-boot.version>
+		<spring-cloud.version>Finchley.SR1</spring-cloud.version>
+		<spring-boot-admin.version>2.0.2</spring-boot-admin.version>
+		<mybatis-spring-boot.version>1.3.2</mybatis-spring-boot.version>
+		<mybatis-plus>2.3</mybatis-plus>
+		<mybatisplus-spring.version>1.0.5</mybatisplus-spring.version>
+		<pac4j.version>3.1.0</pac4j.version>
+		<mysql.version>5.1.47</mysql.version>
+		<druid.version>1.1.10</druid.version>
+		<jedis.version>2.9.0</jedis.version>
+		<commons-fileupload.version>1.3.3</commons-fileupload.version>
+		<jjwt.version>0.9.1</jjwt.version>
+		<jsqlparser.version>1.2</jsqlparser.version>
+		<velocity-engine-core.version>2.0</velocity-engine-core.version>
 		<velocity.version>1.7</velocity.version>
-		<fastjson.version>1.2.46</fastjson.version>
+		<lombok.version>1.18.2</lombok.version>
 		<shiro.version>1.4.0</shiro.version>
-		<io.springfox.version>2.8.0</io.springfox.version>
-		<wxpay.version>0.0.3</wxpay.version>
+		<io.springfox.version>2.9.2</io.springfox.version>
+		<poi.version>4.0.0</poi.version>
+		<io.zipkin.java.version>2.10.4</io.zipkin.java.version>
+		<!-- ########################################################################################### -->
 
 		<!-- yml文件属性配置 -->
+		<mysql.user.username>root</mysql.user.username>
+		<mysql.user.password>sunflower</mysql.user.password>
+
 		<eureka.security.user>admin</eureka.security.user>
 		<eureka.security.password>admin</eureka.security.password>
 
@@ -48,7 +52,7 @@
 
 
 
-		<logging.config>http://118.25.8.54:8082/coding/logback-spring.xml</logging.config>
+		<logging.config>http://118.25.8.54:4567/coding/logback-spring.xml</logging.config>
 
 	</properties>
 
@@ -61,7 +65,6 @@
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
-			<!-- 依赖管理，用于管理spring-boot的依赖 -->
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-dependencies</artifactId>
@@ -69,7 +72,6 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-			<!--依赖管理，用于管理spring-cloud的依赖，其中Edgware.SR1是版本号 -->
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
@@ -81,64 +83,50 @@
 				<groupId>de.codecentric</groupId>
 				<artifactId>spring-boot-admin-dependencies</artifactId>
 				<version>${spring-boot-admin.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
 			</dependency>
-			<!-- 测试 -->
-			<dependency>  
-	           <groupId>org.springframework.boot</groupId>  
-	           <artifactId>spring-boot-starter-test</artifactId>  
-	           <version>${spring-boot.version}</version>
-	           <scope>test</scope>  
-        	</dependency>
-			<!--<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-starter-security</artifactId>
-				<version>${spring-cloud.version}</version>
-			</dependency>-->
-			<!-- eureka 云端负载均衡，一个基于 REST 的服务，用于定位服务，以实现云端的负载均衡和中间层服务器的故障转移。 -->
 			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-starter-eureka-server</artifactId>
-				<version>1.4.5.RELEASE</version>
+				<groupId>org.mybatis.spring.boot</groupId>
+				<artifactId>mybatis-spring-boot</artifactId>
+				<version>${mybatis-spring-boot.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
 			</dependency>
-			<!--<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-starter-oauth2</artifactId>
-				<version>${spring-cloud.version}</version>
-			</dependency>-->
-			<!-- zuul 边缘服务工具，是提供动态路由，监控，弹性，安全等的边缘服务 -->
-			<!--<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-starter-zuul</artifactId>
-				<version>${spring-cloud.version}</version>
-			</dependency>-->
-			<!-- feign -->
+			<!-- https://mvnrepository.com/artifact/com.baomidou/mybatisplus-spring-boot-starter -->
 			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-starter-feign</artifactId>
-				<version>1.4.5.RELEASE</version>
+				<groupId>com.baomidou</groupId>
+				<artifactId>mybatisplus-spring-boot-starter</artifactId>
+				<version>${mybatisplus-spring.version}</version>
 			</dependency>
-			<!-- hystrix 容错管理工具，旨在通过控制服务和第三方库的节点,从而对延迟和故障提供更强大的容错能力。 -->
-			<!--<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-starter-hystrix</artifactId>
-				<version>${spring-cloud.version}</version>
-			</dependency>-->
-			<!-- ribbon -->
+
 			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-starter-ribbon</artifactId>
-				<version>1.4.5.RELEASE</version>
+				<groupId>com.baomidou</groupId>
+				<artifactId>mybatis-plus</artifactId>
+				<version>${mybatis-plus}</version>
 			</dependency>
-			<!--<dependency>
-				<groupId>de.codecentric</groupId>
-				<artifactId>spring-boot-admin-server-ui</artifactId>
-				<version>${spring-boot-admin.version}</version>
-			</dependency>-->
-			<!--<dependency>
-				<groupId>de.codecentric</groupId>
-				<artifactId>spring-boot-admin-starter-client</artifactId>
-				<version>${spring-boot-admin.version}</version>
-			</dependency>-->
+
+			<dependency>
+				<groupId>org.pac4j</groupId>
+				<artifactId>pac4j</artifactId>
+				<version>${pac4j.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>io.zipkin.brave</groupId>
+				<artifactId>brave-bom</artifactId>
+				<version>5.1.4</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>io.zipkin.zipkin2</groupId>
+				<artifactId>parent</artifactId>
+				<version>${io.zipkin.java.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-starter-logging</artifactId>
@@ -146,16 +134,27 @@
 				<scope>runtime</scope>
 				<exclusions>
 					<exclusion>
-						<groupId>commons-logging</groupId>
-						<artifactId>commons-logging</artifactId>
+						<groupId>org.apache.logging.log4j</groupId>
+						<artifactId>log4j-api</artifactId>
 					</exclusion>
 				</exclusions>
 			</dependency>
 			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-api</artifactId>
-				<version>1.7.25</version>
-				<scope>compile</scope>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-data-redis</artifactId>
+				<version>${spring-boot.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>io.lettuce</groupId>
+						<artifactId>lettuce-core</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>redis.clients</groupId>
+				<artifactId>jedis</artifactId>
+				<version>${jedis.version}</version>
+				<scope>runtime</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
@@ -168,18 +167,18 @@
 				<artifactId>spring-boot-starter-undertow</artifactId>
 				<version>${spring-boot.version}</version>
 				<scope>runtime</scope>
+				<exclusions>
+					<exclusion>
+						<groupId>org.jboss.spec.javax.annotation</groupId>
+						<artifactId>jboss-annotations-api_1.2_spec</artifactId>
+					</exclusion>
+				</exclusions>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-devtools</artifactId>
 				<version>${spring-boot.version}</version>
-				<scope>provided</scope>
-				<exclusions>
-					<exclusion>
-						<groupId>commons-logging</groupId>
-						<artifactId>commons-logging</artifactId>
-					</exclusion>
-				</exclusions>
+				<scope>test</scope>
 			</dependency>
 			<dependency>
 				<groupId>mysql</groupId>
@@ -191,79 +190,34 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-starter-web</artifactId>
 				<version>${spring-boot.version}</version>
-				<!-- <exclusions>
+				<exclusions>
 					<exclusion>
 						<groupId>org.springframework.boot</groupId>
 						<artifactId>spring-boot-starter-tomcat</artifactId>
 					</exclusion>
-				</exclusions> -->
-			</dependency>
-			<dependency>
-				<groupId>org.apache.commons</groupId>
-				<artifactId>commons-lang3</artifactId>
-				<version>${commons-lang3.version}</version>
+				</exclusions>
 			</dependency>
 			<dependency>
 				<groupId>commons-fileupload</groupId>
 				<artifactId>commons-fileupload</artifactId>
-				<version>1.3.3</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.httpcomponents</groupId>
-				<artifactId>httpclient</artifactId>
-				<version>${httpclient.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.alibaba</groupId>
-				<artifactId>fastjson</artifactId>
-				<version>${fastjson.version}</version>
+				<version>${commons-fileupload.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.velocity</groupId>
-				<artifactId>velocity</artifactId>
-				<version>${velocity.version}</version>
+				<artifactId>velocity-engine-core</artifactId>
+				<version>${velocity-engine-core.version}</version>
 				<scope>test</scope>
 			</dependency>
-			<dependency>
-				<groupId>javax.validation</groupId>
-				<artifactId>validation-api</artifactId>
-				<version>2.0.1.Final</version>
-			</dependency>
-			<dependency>
-				<groupId>org.hibernate</groupId>
-				<artifactId>hibernate-validator</artifactId>
-				<version>6.0.9.Final</version>
-			</dependency>
+            <dependency>
+                <groupId>org.apache.velocity</groupId>
+                <artifactId>velocity</artifactId>
+                <version>${velocity.version}</version>
+            </dependency>
 			<dependency>
 				<groupId>com.github.jsqlparser</groupId>
 				<artifactId>jsqlparser</artifactId>
 				<version>${jsqlparser.version}</version>
 			</dependency>
-			<dependency>
-				<groupId>org.mybatis</groupId>
-				<artifactId>mybatis-spring</artifactId>
-				<version>${mybatis-spring.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.mybatis</groupId>
-				<artifactId>mybatis</artifactId>
-				<version>${mybatis.version}</version>
-			</dependency>
-
-
-			<!-- mybatis-plus -->
-			<dependency>
-				<groupId>org.mybatis.spring.boot</groupId>
-				<artifactId>mybatis-spring-boot-starter</artifactId>
-				<version>1.3.1</version>
-			</dependency>
-
-			<dependency>
-				<groupId>com.baomidou</groupId>
-				<artifactId>mybatis-plus</artifactId>
-				<version>${mybatis-plus.version}</version>
-			</dependency>
-			<!-- swagger2 start -->
 			<dependency>
 				<groupId>io.springfox</groupId>
 				<artifactId>springfox-swagger2</artifactId>
@@ -277,69 +231,66 @@
 			<dependency>
 				<groupId>io.swagger</groupId>
 				<artifactId>swagger-annotations</artifactId>
-				<version>1.5.18</version>
+				<version>1.5.21</version>
 			</dependency>
-			<!-- swagger2 end -->
+			<dependency>
+				<groupId>io.swagger</groupId>
+				<artifactId>swagger-models</artifactId>
+				<version>1.5.21</version>
+			</dependency>
 			<dependency>
 				<groupId>com.alibaba</groupId>
 				<artifactId>druid</artifactId>
 				<version>${druid.version}</version>
-				<exclusions>
-					<exclusion>
-						<groupId>com.alibaba</groupId>
-						<artifactId>jconsole</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>com.alibaba</groupId>
-						<artifactId>tools</artifactId>
-					</exclusion>
-				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>${lombok.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>io.jsonwebtoken</groupId>
 				<artifactId>jjwt</artifactId>
 				<version>${jjwt.version}</version>
 			</dependency>
-			<!-- jxls导出excel start -->
 			<dependency>
 				<groupId>org.apache.poi</groupId>
 				<artifactId>poi</artifactId>
-				<version>3.17</version>
+				<version>${poi.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.poi</groupId>
 				<artifactId>poi-ooxml</artifactId>
-				<version>3.17</version>
+				<version>${poi.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.poi</groupId>
+				<artifactId>poi-scratchpad</artifactId>
+				<version>${poi.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.jxls</groupId>
 				<artifactId>jxls</artifactId>
-				<version>2.4.3</version>
+				<version>2.4.6</version>
 				<exclusions>
 					<exclusion>
 						<groupId>commons-logging</groupId>
 						<artifactId>commons-logging</artifactId>
 					</exclusion>
+					<exclusion>
+						<groupId>org.slf4j</groupId>
+						<artifactId>jcl-over-slf4j</artifactId>
+					</exclusion>
 				</exclusions>
-			</dependency>
-			<dependency>
-				<groupId>net.sourceforge.jexcelapi</groupId>
-				<artifactId>jxl</artifactId>
-				<version>2.6.12</version>
 			</dependency>
 			<dependency>
 				<groupId>org.jxls</groupId>
 				<artifactId>jxls-poi</artifactId>
-				<version>1.0.14</version>
-			</dependency>
-			<dependency>
-				<groupId>org.jxls</groupId>
-				<artifactId>jxls-jexcel</artifactId>
-				<version>1.0.6</version>
+				<version>1.0.15</version>
 				<exclusions>
 					<exclusion>
-						<groupId>log4j</groupId>
-						<artifactId>log4j</artifactId>
+						<groupId>org.slf4j</groupId>
+						<artifactId>jcl-over-slf4j</artifactId>
 					</exclusion>
 				</exclusions>
 			</dependency>
@@ -352,36 +303,30 @@
 						<groupId>commons-logging</groupId>
 						<artifactId>commons-logging</artifactId>
 					</exclusion>
+					<exclusion>
+						<groupId>org.slf4j</groupId>
+						<artifactId>jcl-over-slf4j</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.apache.commons</groupId>
+						<artifactId>commons-digester3</artifactId>
+					</exclusion>
 				</exclusions>
 			</dependency>
-			<!-- jxls导出excel end -->
-			
-			<!-- apache.shiro 权限管理  start-->
 			<dependency>
 				<groupId>org.apache.shiro</groupId>
 				<artifactId>shiro-spring</artifactId>
 				<version>${shiro.version}</version>
 			</dependency>
-			<!-- apache.shiro 权限管理  end  -->
 			<dependency>
-				<groupId>org.pac4j</groupId>
-				<artifactId>pac4j-cas</artifactId>
-				<version>2.2.1</version>
-			</dependency>
-			<dependency>
-				<groupId>org.pac4j</groupId>
-				<artifactId>pac4j-http</artifactId>
-				<version>2.2.1</version>
-			</dependency>
-			<dependency>
-				<groupId>org.pac4j</groupId>
-				<artifactId>pac4j-jwt</artifactId>
-				<version>2.2.1</version>
+				<groupId>org.apache.shiro</groupId>
+				<artifactId>shiro-web</artifactId>
+				<version>${shiro.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>io.buji</groupId>
 				<artifactId>buji-pac4j</artifactId>
-				<version>3.1.0</version>
+				<version>4.0.0</version>
 			</dependency>
 			<dependency>
 				<groupId>com.github.wxpay</groupId>
@@ -389,13 +334,24 @@
 				<version>0.0.3</version>
 			</dependency>
 			<dependency>
-				<groupId>com.aliyun.oss</groupId>
-				<artifactId>aliyun-sdk-oss</artifactId>
-				<version>3.0.0</version>
+				<groupId>com.alipay.sdk</groupId>
+				<artifactId>alipay-sdk-java</artifactId>
+				<version>3.1.0</version>
 				<exclusions>
 					<exclusion>
 						<groupId>commons-logging</groupId>
 						<artifactId>commons-logging</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>com.aliyun.oss</groupId>
+				<artifactId>aliyun-sdk-oss</artifactId>
+					<version>3.1.0</version>
+				<exclusions>
+					<exclusion>
+						<groupId>com.sun.jersey</groupId>
+						<artifactId>jersey-json</artifactId>
 					</exclusion>
 				</exclusions>
 			</dependency>
@@ -407,43 +363,58 @@
 			<dependency>
 				<groupId>com.aliyun</groupId>
 				<artifactId>aliyun-java-sdk-core</artifactId>
-				<version>3.5.1</version>
+				<version>3.5.1</version><!-- 其他版本推送有问题 -->
 			</dependency>
 			<dependency>
 				<groupId>com.aliyun</groupId>
 				<artifactId>aliyun-java-sdk-push</artifactId>
-				<version>3.9.0</version>
+				<version>3.10.0</version>
+			</dependency>
+			<dependency>
+				<groupId>com.aliyun.openservices</groupId>
+				<artifactId>ons-client</artifactId>
+				<version>1.7.8.Final</version>
 			</dependency>
 			<dependency>
 				<groupId>org.jsoup</groupId>
 				<artifactId>jsoup</artifactId>
-				<version>1.11.2</version>
-			</dependency>
-			<!-- 添加对jsp视图解析的支持 -->
-			<dependency>
-				<groupId>org.apache.tomcat.embed</groupId>
-				<artifactId>tomcat-embed-jasper</artifactId>
-				<version>${tomcat-embed-jasper.version}</version>
-				<scope>provided</scope>
-			</dependency>
-
-			<dependency>
-				<groupId>javax.servlet</groupId>
-				<artifactId>jstl</artifactId>
-				<version>${jstl.version}</version>
+				<version>1.11.3</version>
 			</dependency>
 			<dependency>
-				<groupId>javax.servlet</groupId>
-				<artifactId>servlet-api</artifactId>
-				<version>RELEASE</version>
+				<groupId>com.google.zxing</groupId>
+				<artifactId>core</artifactId>
+				<version>3.3.3</version>
 			</dependency>
-			<!-- https://mvnrepository.com/artifact/com.github.wxpay/wxpay-sdk -->
 			<dependency>
-				<groupId>com.github.wxpay</groupId>
-				<artifactId>wxpay-sdk</artifactId>
-				<version>${wxpay.version}</version>
+				<groupId>com.belerweb</groupId>
+				<artifactId>pinyin4j</artifactId>
+				<version>2.5.1</version>
 			</dependency>
-
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>2.6</version>
+			</dependency>
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>1.2.49</version>
+			</dependency>
+			<dependency>
+				<groupId>org.elasticsearch.client</groupId>
+				<artifactId>elasticsearch-rest-high-level-client</artifactId>
+				<version>5.6.11</version>
+				<exclusions>
+					<exclusion>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.apache.logging.log4j</groupId>
+						<artifactId>log4j-core</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<build>
@@ -653,12 +624,12 @@
 	</build>
 	<profiles>
 		<profile>
-			<id>test</id>
+			<id>dev</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
-				<profilesActive>test</profilesActive>
+				<profilesActive>dev</profilesActive>
 				<devtoolsEnable>true</devtoolsEnable>
 				<refreshMapper>true</refreshMapper>
 				<failOnError>false</failOnError>
@@ -677,7 +648,7 @@
 	<repositories>
 		<repository>
 			<id>sunflower-nexus</id>
-			<url>http://118.25.8.54:8081/repository/maven-public/</url>
+			<url>http://localhost:8081/repository/maven-public/</url>
 			<snapshots>
 				<enabled>true</enabled>
 				<checksumPolicy>warn</checksumPolicy>
@@ -719,11 +690,11 @@
 	<distributionManagement>
 		<snapshotRepository>
 			<id>snapshots</id>
-			<url>http://118.25.8.54:8081/repository/maven-snapshots/</url>
+			<url>http://localhost:8081/repository/maven-snapshots/</url>
 		</snapshotRepository>
 		<repository>
 			<id>releases</id>
-			<url>http://118.25.8.54:8081/repository/maven-releases/</url>
+			<url>http://localhost:8081/repository/maven-releases/</url>
 		</repository>
 	</distributionManagement>
 </project>
