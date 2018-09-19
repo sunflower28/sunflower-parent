@@ -37,20 +37,8 @@
 		<poi.version>4.0.0</poi.version>
 		<io.zipkin.java.version>2.10.4</io.zipkin.java.version>
 		<!-- ########################################################################################### -->
-
-		<!-- yml文件属性配置 -->
-		<mysql.user.username>root</mysql.user.username>
-		<mysql.user.password>sunflower</mysql.user.password>
-
-		<eureka.security.user>admin</eureka.security.user>
-		<eureka.security.password>admin</eureka.security.password>
-
-		<eureka.server.port>8888</eureka.server.port>
-		<eureka.instance.hostname>localhost</eureka.instance.hostname>
-		<eureka.registry.serviceUrl>http://localhost:8888/eureka</eureka.registry.serviceUrl>
-		<eureka.client.serviceUrl>http://admin:admin@localhost:8888/eureka</eureka.client.serviceUrl>
-
-
+        <flowcount.server.port>8041</flowcount.server.port>
+        <flowcount.management.port>4041</flowcount.management.port>
 
 		<logging.config>http://118.25.8.54:4567/coding/logback-spring.xml</logging.config>
 
@@ -633,15 +621,48 @@
 				<devtoolsEnable>true</devtoolsEnable>
 				<refreshMapper>true</refreshMapper>
 				<failOnError>false</failOnError>
+                <!-- yml文件属性配置 -->
+                <mysql.user.username>root</mysql.user.username>
+                <mysql.user.password>sunflower</mysql.user.password>
+
+                <eureka.security.user>admin</eureka.security.user>
+                <eureka.security.password>admin</eureka.security.password>
+
+                <eureka.server.port>8888</eureka.server.port>
+                <eureka.instance.hostname>118.25.8.54</eureka.instance.hostname>
+                <eureka.registry.serviceUrl>http://${eureka.instance.hostname}:${eureka.server.port}/eureka</eureka.registry.serviceUrl>
+                <eureka.client.serviceUrl>http://${eureka.security.user}:${eureka.security.password}@${eureka.instance.hostname}:${eureka.server.port}/eureka</eureka.client.serviceUrl>
+                <bootAdminClientUrl>http://118.25.8.54:7777</bootAdminClientUrl>
+                <bootAdminUserName>admin</bootAdminUserName>
+                <bootAdminPassword>admin</bootAdminPassword>
+                <redis.host>118.25.8.54</redis.host>
+                <redis.user.port>sunflower</redis.user.port>
+                <redis.user.password>sunflower</redis.user.password>
 			</properties>
 		</profile>
 		<profile>
 			<id>prod</id>
 			<properties>
-				<profilesActive>prod</profilesActive>
-				<devtoolsEnable>false</devtoolsEnable>
-				<refreshMapper>false</refreshMapper>
-				<failOnError>false</failOnError>
+                <devtoolsEnable>true</devtoolsEnable>
+                <refreshMapper>true</refreshMapper>
+                <failOnError>false</failOnError>
+                <!-- yml文件属性配置 -->
+                <mysql.user.username>root</mysql.user.username>
+                <mysql.user.password>sunflower</mysql.user.password>
+
+                <eureka.security.user>admin</eureka.security.user>
+                <eureka.security.password>admin</eureka.security.password>
+
+                <eureka.server.port>8888</eureka.server.port>
+                <eureka.instance.hostname>118.25.8.54</eureka.instance.hostname>
+                <eureka.registry.serviceUrl>http://${eureka.instance.hostname}:${eureka.server.port}/eureka</eureka.registry.serviceUrl>
+                <eureka.client.serviceUrl>http://${eureka.security.user}:${eureka.security.password}@${eureka.instance.hostname}:${eureka.server.port}/eureka</eureka.client.serviceUrl>
+                <bootAdminClientUrl>http://118.25.8.54:7777</bootAdminClientUrl>
+                <bootAdminUserName>admin</bootAdminUserName>
+                <bootAdminPassword>admin</bootAdminPassword>
+                <redis.host>118.25.8.54</redis.host>
+                <redis.user.port>sunflower</redis.user.port>
+                <redis.user.password>sunflower</redis.user.password>
 			</properties>
 		</profile>
 	</profiles>
