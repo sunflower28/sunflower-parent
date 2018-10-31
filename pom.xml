@@ -764,7 +764,7 @@
 							</goals>
 							<configuration>
 								<rules>
-									<requireReleaseVersion />
+									<!--<requireReleaseVersion />-->
 									<dependencyConvergence />
 								</rules>
 								<fail>true</fail>
