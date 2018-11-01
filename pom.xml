@@ -795,10 +795,10 @@
                 <eureka.security.password>admin</eureka.security.password>
 
                 <eureka.server.port>8888</eureka.server.port>
-                <eureka.instance.hostname>118.25.8.54</eureka.instance.hostname>
+                <eureka.instance.hostname>sunflowerSpringEureka</eureka.instance.hostname>
                 <eureka.registry.serviceUrl>http://${eureka.instance.hostname}:${eureka.server.port}/eureka</eureka.registry.serviceUrl>
                 <eureka.client.serviceUrl>http://${eureka.security.user}:${eureka.security.password}@${eureka.instance.hostname}:${eureka.server.port}/eureka</eureka.client.serviceUrl>
-                <bootAdminClientUrl>http://118.25.8.54:7777</bootAdminClientUrl>
+                <bootAdminClientUrl>http://sunflowerSpringBootAdmin:7777</bootAdminClientUrl>
                 <bootAdminUserName>admin</bootAdminUserName>
                 <bootAdminPassword>admin</bootAdminPassword>
                 <redis.host>118.25.8.54</redis.host>
