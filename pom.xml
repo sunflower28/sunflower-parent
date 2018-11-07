@@ -76,22 +76,24 @@
 			</dependency>
 			<dependency>
 				<groupId>org.mybatis.spring.boot</groupId>
-				<artifactId>mybatis-spring-boot</artifactId>
+				<artifactId>mybatis-spring-boot-starter</artifactId>
 				<version>${mybatis-spring-boot.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-			<!-- https://mvnrepository.com/artifact/com.baomidou/mybatisplus-spring-boot-starter -->
 			<dependency>
 				<groupId>com.baomidou</groupId>
 				<artifactId>mybatisplus-spring-boot-starter</artifactId>
 				<version>${mybatisplus-spring.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
 			</dependency>
-
 			<dependency>
 				<groupId>com.baomidou</groupId>
 				<artifactId>mybatis-plus</artifactId>
 				<version>${mybatis-plus}</version>
+				<type>pom</type>
+				<scope>import</scope>
 			</dependency>
 
 			<dependency>
