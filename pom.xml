@@ -31,6 +31,7 @@
 		<jsqlparser.version>1.2</jsqlparser.version>
 		<velocity-engine-core.version>2.0</velocity-engine-core.version>
 		<velocity.version>1.7</velocity.version>
+		<lombok-maven-plugin.version>1.18.4.0</lombok-maven-plugin.version>
 		<lombok.version>1.18.2</lombok.version>
 		<shiro.version>1.4.0</shiro.version>
 		<io.springfox.version>2.9.2</io.springfox.version>
@@ -85,15 +86,15 @@
 				<groupId>com.baomidou</groupId>
 				<artifactId>mybatisplus-spring-boot-starter</artifactId>
 				<version>${mybatisplus-spring.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
+				<!--<type>pom</type>
+				<scope>import</scope>-->
 			</dependency>
 			<dependency>
 				<groupId>com.baomidou</groupId>
 				<artifactId>mybatis-plus</artifactId>
 				<version>${mybatis-plus}</version>
-				<type>pom</type>
-				<scope>import</scope>
+				<!--<type>pom</type>
+				<scope>import</scope>-->
 			</dependency>
 
 			<dependency>
@@ -503,12 +504,12 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-deploy-plugin</artifactId>
-					<version>3.0.0-M1</version>
+					<version>${maven-deploy-plugin.version}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.8.0</version>
+					<version>${maven-compiler-plugin.version}</version>
 					<configuration>
 						<source>${jdk.version}</source>
 						<target>${jdk.version}</target>
@@ -519,7 +520,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-plugin</artifactId>
-					<version>2.22.1</version>
+					<version>${maven-surefire-plugin.version}</version>
 					<configuration>
 						<skip>true</skip>
 					</configuration>
@@ -527,7 +528,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-clean-plugin</artifactId>
-					<version>3.1.0</version>
+					<version>${maven-clean-plugin.version}</version>
 					<configuration>
 						<filesets>
 							<fileset>
@@ -536,6 +537,19 @@
 							</fileset>
 						</filesets>
 					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>${maven-source-plugin.version}</version>
+					<executions>
+						<execution>
+							<id>attach-sources</id>
+							<goals>
+								<goal>jar</goal>
+							</goals>
+						</execution>
+					</executions>
 				</plugin>
 				<plugin>
 					<groupId>org.springframework.boot</groupId>
@@ -557,7 +571,7 @@
 				<plugin>
 					<groupId>org.projectlombok</groupId>
 					<artifactId>lombok-maven-plugin</artifactId>
-					<version>1.18.2.0</version>
+					<version>${lombok-maven-plugin.version}</version>
 					<executions>
 						<execution>
 							<phase>generate-sources</phase>
